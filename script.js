@@ -19,6 +19,14 @@ calcButtons.forEach(function(btn){
       }
     } else if (btn.id === 'clearButton'){
       clear();
+    } else if(btn.id === 'delButton'){
+        if(firstNum !== '' && operator !== ''){
+            secondNum = secondNum.slice(0,-1);
+            lowerLine.textContent = secondNum;
+        } else {
+            firstNum = firstNum.slice(0, -1);
+            lowerLine.textContent = firstNum;
+        }
     } else if (btn.id === 'decimal'){
         if (firstNum !== '' && operator !== ''){
             if(secondNum.indexOf('.') === -1){
@@ -79,19 +87,19 @@ function calc(num1, num2, op){
     num2 = parseFloat(num2);
     switch (op){
         case '+':
-            total = num1 + num2;
+            total = Math.floor((num1 + num2)*100000000)/100000000;
             displayTotal(total);
             break;
         case '-':
-            total = num1 - num2;
+            total = Math.floor((num1 - num2)*100000000)/100000000;
             displayTotal(total);
             break;
         case '*':
-            total = num1 * num2;
+            total = Math.floor((num1 * num2)*100000000)/100000000;
             displayTotal(total);
             break;
         case '/':
-            total = num1 / num2;
+            total = Math.floor((num1 / num2)*100000000)/100000000;
             displayTotal(total);
             break;
     }
